@@ -17,8 +17,9 @@ const App = () => {
     e.preventDefault();
     let obj = { id: todoId, todo: todo };
     window.localStorage.setItem(todoId, JSON.stringify(obj));
+    setTodos((prev) => [obj, ...prev]);
     setTodoId((prev) => prev + 1);
-    window.location.reload();
+    handleShowModal();
   };
 
   const handleChange = (e) => {
