@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import GlobalStyles from './GlobalStyle';
 import Layout from './components/Layout';
+import Landing from './components/Landing';
 
 const App = () => {
   const [todo, setTodo] = useState('');
@@ -8,6 +9,7 @@ const App = () => {
   const [showModal, setShowModal] = useState(false);
   const [todoId, setTodoId] = useState(0);
   const [localArr, setLocalArr] = useState([]);
+  const [step, setStep] = useState(0);
 
   const handleShowModal = () => {
     setShowModal(!showModal);
@@ -24,6 +26,10 @@ const App = () => {
 
   const handleChange = (e) => {
     setTodo(e.target.value);
+  };
+
+  const handleChangeStep = () => {
+    setStep(step + 1);
   };
 
   //useEffect 함수
@@ -56,32 +62,35 @@ const App = () => {
   return (
     <>
       <GlobalStyles />
-      <Layout>
-        {showModal ? (
-          <div>
-            <form>
-              <label>
-                할 일을 추가해주세요!
-                <input onChange={handleChange} type='text' placeholder='입력해주세요' required />
-              </label>
-              <button onClick={handleSubmit}>확인</button>
-              <button onClick={handleShowModal}>취소</button>
-            </form>
-          </div>
-        ) : null}
+      {step === 0 ? <Landing onChangeStep={handleChangeStep} /> : null}
+      {step === 1 ? (
+        <Layout>
+          {showModal ? (
+            <div>
+              <form>
+                <label>
+                  할 일을 추가해주세요!
+                  <input onChange={handleChange} type='text' placeholder='입력해주세요' required />
+                </label>
+                <button onClick={handleSubmit}>확인</button>
+                <button onClick={handleShowModal}>취소</button>
+              </form>
+            </div>
+          ) : null}
 
-        <ul>
-          {todos.length > 0
-            ? todos.map((todo) => (
-                <li key={todo.id}>
-                  <div>{todo.todo}</div>
-                </li>
-              ))
-            : null}
-        </ul>
+          <ul>
+            {todos.length > 0
+              ? todos.map((todo) => (
+                  <li key={todo.id}>
+                    <div>{todo.todo}</div>
+                  </li>
+                ))
+              : null}
+          </ul>
 
-        <button onClick={handleShowModal}>할일 추가하기</button>
-      </Layout>
+          <button onClick={handleShowModal}>{showModal ? '입력창 닫기' : '할일 추가하기'}</button>
+        </Layout>
+      ) : null}
     </>
   );
 };
