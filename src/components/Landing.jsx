@@ -10,8 +10,8 @@ const BackgroundDiv = styled.div`
   flex-direction: column;
 
   background-color: #485ec6;
-  width: 393px;
-  height: 852px;
+  width: 100vw;
+  height: 100vh;
 `;
 
 const StyledDiv = styled.div`
@@ -43,6 +43,7 @@ const Landing = ({ onChangeStep }) => {
 
   useEffect(() => {
     setTimeout(() => handleChangeStep(), 3000);
+    // eslint-disable-next-line
   }, []);
 
   return (

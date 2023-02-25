@@ -3,6 +3,19 @@ import GlobalStyles from './GlobalStyle';
 import Layout from './components/Layout';
 import Landing from './components/Landing';
 import Modal from './components/Modal';
+import styled from 'styled-components';
+
+const StyledButton = styled.button`
+  display: block;
+  width: 100%;
+  height: 50px;
+  color: #fff;
+  background-color: #485ec6;
+  border-radius: 5px;
+  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.2);
+  margin-top: 20px;
+  margin-bottom: 20px;
+`;
 
 const App = () => {
   const [todo, setTodo] = useState('');
@@ -62,6 +75,7 @@ const App = () => {
     getLocalArr();
     getTodoIds();
     getTodos();
+    // eslint-disable-next-line
   }, []);
 
   return (
@@ -71,7 +85,7 @@ const App = () => {
       {step === 1 ? (
         <Layout>
           {showModal ? <Modal onChange={handleChange} onClick={handleSubmit} onClose={handleShowModal} /> : null}
-          <button onClick={handleShowModal}>할일 추가하기</button>
+          <StyledButton onClick={handleShowModal}>할일 추가하기</StyledButton>
 
           <ul>
             {todos.length > 0

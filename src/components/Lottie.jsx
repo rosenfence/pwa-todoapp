@@ -22,6 +22,7 @@ const Lottie = ({ listIdx, width, height }) => {
       autoplay: true,
       animationData: list[listIdx],
     });
+    // eslint-disable-next-line
   }, []);
 
   return <StyledDiv width={width} height={height} ref={container}></StyledDiv>;

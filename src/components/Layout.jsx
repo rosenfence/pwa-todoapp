@@ -9,8 +9,8 @@ const LayoutDiv = styled.div`
   position: relative;
 
   background: linear-gradient(#eee 70%, #485ec6 100%);
-  width: 393px;
-  height: 852px;
+  width: 100vw;
+  height: 100vh;
 
   overflow: hidden;
 `;
