@@ -7,10 +7,18 @@ const BackgroundDiv = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 
-  background-color: #38c172;
-  width: 100%;
-  height: 100%;
+  background-color: #485ec6;
+  width: 393px;
+  height: 852px;
+`;
+
+const StyledDiv = styled.div`
+  flex: ${(props) => props.flex};
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 `;
 
 const TextDiv = styled.div`
@@ -18,6 +26,16 @@ const TextDiv = styled.div`
   color: #eee;
   font-size: 40px;
   font-weight: bold;
+`;
+
+const StyledLayout = styled(Layout)`
+  justify-content: space-between;
+`;
+
+const CopyRightDiv = styled.div`
+  color: white;
+  font-weight: bold;
+  padding-bottom: 30px;
 `;
 
 const Landing = ({ onChangeStep }) => {
@@ -28,13 +46,16 @@ const Landing = ({ onChangeStep }) => {
   }, []);
 
   return (
-    <BackgroundDiv>
-      <Layout>
-        <TextDiv>창하&지원's</TextDiv>
-        <Lottie width='300px' height='300px' listIdx='0'></Lottie>
-        <TextDiv>투두앱</TextDiv>
-      </Layout>
-    </BackgroundDiv>
+    <StyledLayout>
+      <BackgroundDiv>
+        <StyledDiv flex='9'>
+          <TextDiv>창하&지원's</TextDiv>
+          <Lottie width='300px' height='300px' listIdx='0'></Lottie>
+          <TextDiv>투두앱</TextDiv>
+        </StyledDiv>
+        <CopyRightDiv>Copyright (c) 2023 rosenfence</CopyRightDiv>
+      </BackgroundDiv>
+    </StyledLayout>
   );
 };
 
