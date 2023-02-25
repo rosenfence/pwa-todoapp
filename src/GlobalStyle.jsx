@@ -4,8 +4,11 @@ import reset from 'styled-reset';
 const GlobalStyles = createGlobalStyle` 
   ${reset}
 
+  @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
+
     :root {
       --vh: 100%;
+      font-family: 'Nanum Gothic', sans-serif;
     }
 
     body {

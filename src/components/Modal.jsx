@@ -27,7 +27,21 @@ const ModalForm = styled.form`
   border-radius: 5px;
   box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.2);
 
-  padding: 10px;
+  padding: 20px;
+`;
+
+const ModalLabel = styled.label`
+  font-size: 25px;
+  color: #485ec6;
+`;
+
+const ModalInput = styled.input`
+  margin-top: 10px;
+  width: 100%;
+  height: 40px;
+  border: 1px solid #485ec6;
+  border-radius: 3px;
+  padding-left: 10px;
 `;
 
 const ModalBgImg = styled.img`
@@ -38,7 +52,7 @@ const ModalBgImg = styled.img`
   right: 0px;
 
   z-index: 0;
-  opacity: 0.2;
+  opacity: 0.8;
 `;
 
 const StyledButton = styled.button`
@@ -56,10 +70,10 @@ const Modal = ({ onChange, onClick, onClose }) => {
   return (
     <ModalDiv onClick={onClose}>
       <ModalForm onClick={(e) => e.stopPropagation()}>
-        <label>
+        <ModalLabel>
           할 일을 추가해주세요!
-          <input onChange={onChange} type='text' placeholder='입력해주세요' required />
-        </label>
+          <ModalInput onChange={onChange} type='text' placeholder='여기에 적어주세요!' required />
+        </ModalLabel>
         <StyledButton onClick={onClick}>확인</StyledButton>
         <StyledButton onClick={onClose}>취소</StyledButton>
         <ModalBgImg src='/karinSD.png' />
