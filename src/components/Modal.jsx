@@ -64,6 +64,7 @@ const StyledButton = styled.button`
   border-radius: 5px;
   box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.2);
   margin-top: 20px;
+  font-size: 24px;
 `;
 
 const Modal = ({ onChange, onClick, onClose }) => {
@@ -74,8 +75,8 @@ const Modal = ({ onChange, onClick, onClose }) => {
           할 일을 추가해주세요!
           <ModalInput onChange={onChange} type='text' placeholder='여기에 적어주세요!' required />
         </ModalLabel>
-        <StyledButton onClick={onClick}>확인</StyledButton>
-        <StyledButton onClick={onClose}>취소</StyledButton>
+        <StyledButton onClick={onClick}>추가</StyledButton>
+        <StyledButton onClick={onClose}>닫기</StyledButton>
         <ModalBgImg src='/karinSD.png' />
       </ModalForm>
     </ModalDiv>
