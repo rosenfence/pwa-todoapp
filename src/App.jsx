@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import GlobalStyles from './GlobalStyle';
 import Layout from './components/Layout';
 import Landing from './components/Landing';
+import Modal from './components/Modal';
 
 const App = () => {
   const [todo, setTodo] = useState('');
@@ -30,6 +31,10 @@ const App = () => {
 
   const handleChangeStep = () => {
     setStep(step + 1);
+  };
+
+  const handleDelete = (e) => {
+    console.log(e);
   };
 
   //useEffect 함수
@@ -65,30 +70,22 @@ const App = () => {
       {step === 0 ? <Landing onChangeStep={handleChangeStep} /> : null}
       {step === 1 ? (
         <Layout>
-          {showModal ? (
-            <div>
-              <form>
-                <label>
-                  할 일을 추가해주세요!
-                  <input onChange={handleChange} type='text' placeholder='입력해주세요' required />
-                </label>
-                <button onClick={handleSubmit}>확인</button>
-                <button onClick={handleShowModal}>취소</button>
-              </form>
-            </div>
-          ) : null}
+          {showModal ? <Modal onChange={handleChange} onClick={handleSubmit} onClose={handleShowModal} /> : null}
+          <button onClick={handleShowModal}>할일 추가하기</button>
 
           <ul>
             {todos.length > 0
               ? todos.map((todo) => (
                   <li key={todo.id}>
-                    <div>{todo.todo}</div>
+                    <span>
+                      {todo.todo}
+                      <button>🖋️</button>
+                      <button onClick={handleDelete}>❎</button>
+                    </span>
                   </li>
                 ))
               : null}
           </ul>
-
-          <button onClick={handleShowModal}>{showModal ? '입력창 닫기' : '할일 추가하기'}</button>
         </Layout>
       ) : null}
     </>
