@@ -31,11 +31,15 @@ const App = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    let obj = { id: todoId, todo: todo };
-    window.localStorage.setItem(todoId, JSON.stringify(obj));
-    setTodos((prev) => [obj, ...prev]);
-    setTodoId((prev) => prev + 1);
-    handleShowModal();
+    if (todo.length >= 2) {
+      let obj = { id: todoId, todo: todo };
+      window.localStorage.setItem(todoId, JSON.stringify(obj));
+      setTodos((prev) => [obj, ...prev]);
+      setTodoId((prev) => prev + 1);
+      handleShowModal();
+    } else {
+      alert('2글자 이상 적어주세요!');
+    }
   };
 
   const handleChange = (e) => {
@@ -46,8 +50,18 @@ const App = () => {
     setStep(step + 1);
   };
 
-  const handleDelete = (e) => {
-    console.log(e);
+  console.log(todos);
+
+  const setLocalStorage = async () => {
+    window.localStorage.clear();
+    for (let i = 1; i < todos.length; i++) {
+      window.localStorage.setItem(i, JSON.stringify({ id: i, todo: todos[i].todo }));
+    }
+  };
+
+  const handleDelete = async (e) => {
+    setTodos((prev) => prev.filter((todo) => todo.id !== Number(e.target.value)));
+    await setLocalStorage();
   };
 
   //useEffect 함수
@@ -100,7 +114,9 @@ const App = () => {
                     <span>
                       {todo.todo}
                       <button>🖋️</button>
-                      <button onClick={handleDelete}>❎</button>
+                      <button value={todo.id} onClick={handleDelete}>
+                        ❎
+                      </button>
                     </span>
                   </li>
                 ))
