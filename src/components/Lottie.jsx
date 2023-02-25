@@ -1,8 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import lottie from 'lottie-web';
 import check from '../lottieFiles/check.json';
-import check2 from '../lottieFiles/check2.json';
-import todo from '../lottieFiles/todo.json';
 import styled from 'styled-components';
 
 const StyledDiv = styled.div`
@@ -12,7 +10,7 @@ const StyledDiv = styled.div`
 
 const Lottie = ({ listIdx, width, height }) => {
   const container = useRef();
-  const list = [check, check2, todo];
+  const list = [check];
 
   useEffect(() => {
     lottie.loadAnimation({
