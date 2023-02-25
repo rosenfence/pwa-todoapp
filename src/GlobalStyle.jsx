@@ -4,6 +4,10 @@ import reset from 'styled-reset';
 const GlobalStyles = createGlobalStyle` 
   ${reset}
 
+    :root {
+      --vh: 100%;
+    }
+
     body {
       width: 100%;
       height: 100%;

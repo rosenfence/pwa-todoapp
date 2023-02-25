@@ -11,7 +11,7 @@ const BackgroundDiv = styled.div`
 
   background-color: #485ec6;
   width: 100vw;
-  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
 `;
 
 const StyledDiv = styled.div`

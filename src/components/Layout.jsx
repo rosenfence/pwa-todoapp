@@ -10,7 +10,7 @@ const LayoutDiv = styled.div`
 
   background: linear-gradient(#eee 70%, #485ec6 100%);
   width: 100vw;
-  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
 
   overflow: hidden;
 `;
