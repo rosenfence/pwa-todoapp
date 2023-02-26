@@ -23,7 +23,7 @@ const App = () => {
   const [showModal, setShowModal] = useState(false);
   const [todoId, setTodoId] = useState(0);
   const [localArr, setLocalArr] = useState([]);
-  const [step, setStep] = useState(0);
+  const [step, setStep] = useState(1);
 
   const handleShowModal = () => {
     setShowModal(!showModal);
@@ -50,18 +50,16 @@ const App = () => {
     setStep(step + 1);
   };
 
-  console.log(todos);
-
-  const setLocalStorage = async () => {
-    window.localStorage.clear();
-    for (let i = 1; i < todos.length; i++) {
-      window.localStorage.setItem(i, JSON.stringify({ id: i, todo: todos[i].todo }));
-    }
-  };
-
-  const handleDelete = async (e) => {
+  const handleDelete = (e) => {
     setTodos((prev) => prev.filter((todo) => todo.id !== Number(e.target.value)));
-    await setLocalStorage();
+    setTodos((prev) => {
+      const nextState = prev;
+      window.localStorage.clear();
+      for (let i = 1; i < prev.length + 1; i++) {
+        window.localStorage.setItem(i, JSON.stringify({ id: i, todo: prev[prev.length - i].todo }));
+      }
+      return nextState;
+    });
   };
 
   //useEffect 함수
@@ -108,19 +106,17 @@ const App = () => {
           <StyledButton onClick={handleShowModal}>할일 추가하기</StyledButton>
 
           <ul>
-            {todos.length > 0
-              ? todos.map((todo) => (
-                  <li key={todo.id}>
-                    <span>
-                      {todo.todo}
-                      <button>🖋️</button>
-                      <button value={todo.id} onClick={handleDelete}>
-                        ❎
-                      </button>
-                    </span>
-                  </li>
-                ))
-              : null}
+            {todos.map((todo) => (
+              <li key={todo.id}>
+                <span>
+                  {todo.todo}
+                  <button>☑️</button>
+                  <button value={todo.id} onClick={handleDelete}>
+                    ❎
+                  </button>
+                </span>
+              </li>
+            ))}
           </ul>
         </Layout>
       ) : null}
