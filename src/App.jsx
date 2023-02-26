@@ -51,15 +51,12 @@ const App = () => {
   };
 
   const handleDelete = (e) => {
-    setTodos((prev) => prev.filter((todo) => todo.id !== Number(e.target.value)));
-    setTodos((prev) => {
-      const nextState = prev;
-      window.localStorage.clear();
-      for (let i = 1; i < prev.length + 1; i++) {
-        window.localStorage.setItem(i, JSON.stringify({ id: i, todo: prev[prev.length - i].todo }));
-      }
-      return nextState;
-    });
+    const nextState = todos.filter((todo) => todo.id !== Number(e.target.value));
+    window.localStorage.clear();
+    for (let i = 1; i < nextState.length + 1; i++) {
+      window.localStorage.setItem(i, JSON.stringify({ id: i, todo: nextState[nextState.length - i].todo }));
+    }
+    setTodos(nextState);
   };
 
   //useEffect 함수
@@ -95,6 +92,10 @@ const App = () => {
     getTodos();
     // eslint-disable-next-line
   }, []);
+
+  useEffect(() => {
+    todos.length === 0 ? setTodoId(1) : setTodoId((prev) => prev);
+  }, [todos]);
 
   return (
     <>

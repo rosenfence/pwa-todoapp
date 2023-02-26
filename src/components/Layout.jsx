@@ -16,6 +16,8 @@ const LayoutDiv = styled.div`
 `;
 
 const ContentDiv = styled.div`
+  width: 100%;
+  max-width: 393px;
   z-index: 2;
 `;
 
