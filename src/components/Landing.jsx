@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import Lottie from './Lottie';
-import Layout from './Layout';
 
 const BackgroundDiv = styled.div`
   display: flex;
@@ -28,10 +27,6 @@ const TextDiv = styled.div`
   font-weight: bold;
 `;
 
-const StyledLayout = styled(Layout)`
-  justify-content: space-between;
-`;
-
 const CopyRightDiv = styled.div`
   color: white;
   font-weight: bold;
@@ -47,16 +42,14 @@ const Landing = ({ onChangeStep }) => {
   }, []);
 
   return (
-    <StyledLayout>
-      <BackgroundDiv>
-        <StyledDiv flex='9'>
-          <TextDiv>창하&지원's</TextDiv>
-          <Lottie width='300px' height='300px' listIdx='0'></Lottie>
-          <TextDiv>투두앱</TextDiv>
-        </StyledDiv>
-        <CopyRightDiv>Copyright (c) 2023 rosenfence</CopyRightDiv>
-      </BackgroundDiv>
-    </StyledLayout>
+    <BackgroundDiv>
+      <StyledDiv flex='9'>
+        <TextDiv>창하&지원's</TextDiv>
+        <Lottie width='300px' height='300px' listIdx='0'></Lottie>
+        <TextDiv>투두앱</TextDiv>
+      </StyledDiv>
+      <CopyRightDiv>Copyright (c) 2023 rosenfence</CopyRightDiv>
+    </BackgroundDiv>
   );
 };
 

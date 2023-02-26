@@ -23,7 +23,7 @@ const App = () => {
   const [showModal, setShowModal] = useState(false);
   const [todoId, setTodoId] = useState(0);
   const [localArr, setLocalArr] = useState([]);
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState(0);
 
   const handleShowModal = () => {
     setShowModal(!showModal);
