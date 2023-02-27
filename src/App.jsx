@@ -52,6 +52,7 @@ const App = () => {
 
   const handleDelete = (e) => {
     const nextState = todos.filter((todo) => todo.id !== Number(e.target.value));
+    nextState.length === 0 ? setTodoId(1) : setTodoId((prev) => prev);
     window.localStorage.clear();
     for (let i = 1; i < nextState.length + 1; i++) {
       window.localStorage.setItem(i, JSON.stringify({ id: i, todo: nextState[nextState.length - i].todo }));
@@ -92,10 +93,6 @@ const App = () => {
     getTodos();
     // eslint-disable-next-line
   }, []);
-
-  useEffect(() => {
-    todos.length === 0 ? setTodoId(1) : setTodoId((prev) => prev);
-  }, [todos]);
 
   return (
     <>
