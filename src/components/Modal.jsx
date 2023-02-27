@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 
 const ModalDiv = styled.div`
@@ -68,12 +68,20 @@ const StyledButton = styled.button`
 `;
 
 const Modal = ({ onChange, onClick, onClose }) => {
+  const ref = useRef(null);
+
+  useEffect(() => {
+    if (ref.current) {
+      ref.current.focus();
+    }
+  }, []);
+
   return (
     <ModalDiv onClick={onClose}>
       <ModalForm onClick={(e) => e.stopPropagation()}>
         <ModalLabel>
           할 일을 추가해주세요!
-          <ModalInput onChange={onChange} type='text' placeholder='여기에 적어주세요!' required />
+          <ModalInput ref={ref} onChange={onChange} type='text' placeholder='여기에 적어주세요!' autofocus />
         </ModalLabel>
         <StyledButton onClick={onClick}>추가</StyledButton>
         <StyledButton onClick={onClose}>닫기</StyledButton>

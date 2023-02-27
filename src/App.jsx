@@ -3,6 +3,7 @@ import GlobalStyles from './GlobalStyle';
 import Layout from './components/Layout';
 import Landing from './components/Landing';
 import Modal from './components/Modal';
+import Lists from './components/Lists';
 import styled from 'styled-components';
 
 const StyledButton = styled.button`
@@ -102,20 +103,7 @@ const App = () => {
         <Layout>
           {showModal ? <Modal onChange={handleChange} onClick={handleSubmit} onClose={handleShowModal} /> : null}
           <StyledButton onClick={handleShowModal}>할일 추가하기</StyledButton>
-
-          <ul>
-            {todos.map((todo) => (
-              <li key={todo.id}>
-                <span>
-                  {todo.todo}
-                  <button>☑️</button>
-                  <button value={todo.id} onClick={handleDelete}>
-                    ❎
-                  </button>
-                </span>
-              </li>
-            ))}
-          </ul>
+          <Lists lists={todos} handleDelete={handleDelete} />
         </Layout>
       ) : null}
     </>
