@@ -15,13 +15,17 @@ const StyledLi = styled.li`
   height: 50px;
 `;
 
+const StyledSpan = styled.span`
+  width: 90px;
+  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+`;
+
 const StyledButton = styled.button`
-  width: 45px;
+  width: 50%;
   height: 45px;
   background-color: ${(props) => props.backgroundColor};
   border-radius: ${(props) => props.borderRad};
-
-  box-shadow: inset 0 0 5px #333;
 `;
 
 const Lists = ({ lists, handleDelete }) => {
@@ -29,19 +33,19 @@ const Lists = ({ lists, handleDelete }) => {
     <StyledUl>
       {lists.map((todo) => (
         <StyledLi key={todo.id}>
-          <span>
+          <span style={{ width: '20px' }}>
             <input type='checkbox' />
-            <label style={{ marginRight: '5px' }} />
-            {todo.todo}
+            <label style={{ marginRight: '15px' }} />
           </span>
-          <span>
-            <StyledButton backgroundColor='#01B7ED' borderRad='10px 0px 0px 10px'>
+          <span style={{ width: 'calc(100% - 125px)', marginRight: '5px' }}>{todo.todo}</span>
+          <StyledSpan>
+            <StyledButton backgroundColor='#485ec6' borderRad='10px 0px 0px 10px'>
               <FaPen style={{ color: 'white' }} />
             </StyledButton>
             <StyledButton tbr backgroundColor='#D81C2F' borderRad='0px 10px 10px 0px' value={todo.id} onClick={handleDelete}>
               <FaTimes style={{ color: 'white' }} />
             </StyledButton>
-          </span>
+          </StyledSpan>
         </StyledLi>
       ))}
     </StyledUl>

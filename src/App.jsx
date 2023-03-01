@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { FaPlus } from 'react-icons/fa';
 import GlobalStyles from './GlobalStyle';
 import Layout from './components/Layout';
 import Landing from './components/Landing';
@@ -8,11 +9,11 @@ import styled from 'styled-components';
 
 const StyledButton = styled.button`
   display: block;
-  width: 100%;
+  width: 50px;
   height: 50px;
   color: #fff;
   background-color: #485ec6;
-  border-radius: 5px;
+  border-radius: 50%;
   box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.2);
   margin-top: 20px;
   margin-bottom: 20px;
@@ -102,7 +103,11 @@ const App = () => {
       {step === 1 ? (
         <Layout>
           {showModal ? <Modal onChange={handleChange} onClick={handleSubmit} onClose={handleShowModal} /> : null}
-          <StyledButton onClick={handleShowModal}>할일 추가하기</StyledButton>
+          <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
+            <StyledButton onClick={handleShowModal}>
+              <FaPlus />
+            </StyledButton>
+          </div>
           <Lists lists={todos} handleDelete={handleDelete} />
         </Layout>
       ) : null}
