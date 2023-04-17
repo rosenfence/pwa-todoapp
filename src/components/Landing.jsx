@@ -44,7 +44,7 @@ const Landing = ({ onChangeStep }) => {
   return (
     <BackgroundDiv>
       <StyledDiv flex='9'>
-        <TextDiv>창하&지원's</TextDiv>
+        <TextDiv>창하's</TextDiv>
         <Lottie width='300px' height='300px' listIdx='0'></Lottie>
         <TextDiv>투두앱</TextDiv>
       </StyledDiv>
